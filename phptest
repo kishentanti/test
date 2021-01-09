@@ -1,0 +1,114 @@
+//Question 1
+//Define an array of numbers (use any random numbers). Write a program in PHP to find the sum of the array of numbers defined. Do not use any library functions, need to do via for loops only
+
+<?php
+$arr = array(4,5,63,545,6,65,765,4,4); 
+$total = count($arr); $sum = 0;
+for($i=0;$i<$total;$i++)
+{ 
+    $sum += $arr[$i]; 
+} 
+echo $sum
+?>
+
+//Question 2
+//Suppose you have an array of 101 integers. This array is already sorted and all numbers in this array are consecutive. Each number only occurs once in the array except one number which occurs twice. Write a php code to find the repeated number.
+
+<?php
+$arr = array(0,1,2,3,4,5,6,7,7,8,9,10,101);
+function repeat($arr, $size) 
+{ 
+	$i; 
+	$j; 
+	echo " Repeat number: "; 
+
+	for($i = 0; $i < $size; $i++) 
+		for($j = $i + 1; $j < $size; $j++) 
+			if($arr[$i] == $arr[$j]) 
+				echo $arr[$i], " "; 
+}  
+$arr_size = sizeof($arr, 0); 
+repeat($arr, $arr_size); 
+?>
+
+
+
+//Question 3 
+//Find the maximum consecutive 1's in an array of 0's and 1's.
+//Example:
+//a) 00110001001110 - Output :3 [Max num of consecutive 1's is 3]
+//b) 1000010001 - Output :1 [Max num of consecutive 1's is 1]
+
+<?php
+$arr = array(1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1); 
+function MaxCon($arr, $n) 
+{ 
+  $count = 0; 
+	$result = 0; 
+	for ($i = 0; $i < $n; $i++) 
+	{ 
+		if ($arr[$i] == 0) 
+			$count = 0; 
+		else
+		{ 
+			$count++; 
+			$result = max($result, $count); 
+		} 
+	} 
+	return $result; 
+} 
+$n = sizeof($arr) / sizeof($arr[0]); 
+echo MaxCon($arr, $n) ; 
+
+
+
+//Question 4
+//You are given an array of values, (positive, negative values both, but only integers) and a value. You have to print all the pairs whose sum is the given value. Write a function to do this.
+
+<?php
+$arr = array(3,4,6,-9,6,-3,-5,2,-5,4);
+function pairs($arr, $n, $sum)
+{
+	$count = 0; 
+	for ($i = 0; $i < $n; $i++)
+		for ( $j = $i + 1; $j < $n; $j++)
+			if ($arr[$i] + $arr[$j] == $sum)
+				echo "(", $arr[$i], ", ",$arr[$j], ")", "\n";
+}
+$n = sizeof($arr);
+$sum = 10;
+pairs($arr, $n, $sum);
+?>
+
+
+//Question 5
+//Design a mysql database. Requirements are as follows 
+//We have a user entity with columns username, password
+//Every use can have multiple addresses. Address entity will have column street, pincode, country, state, phone no. So one user can have multiple addresses. 
+//Design a db structure for this using create table sql syntax
+
+
+CREATE TABLE "users" (
+	"Username"  VARCHAR,
+	"Password"  VARCHAR,
+	PRIMARY KEY("username")
+);
+CREATE TABLE "address" (
+	"street"	INTEGER,
+	"pincode"	INTEGER,
+	"country"	TEXT,
+	"state"	TEXT,
+	"phone_no."	INTEGER,
+	PRIMARY KEY("phone no.")
+	userID references user(userID)
+);
+CREATE TABLE "address2" (
+	"street"	VARCHAR,
+	"pincode"	INTEGER,
+	"state"	TEXT,
+	"country"	TEXT,
+	"phone_no."	INTEGER,
+	PRIMARY KEY("phone no.")
+	userID references user(userID)
+);
+
